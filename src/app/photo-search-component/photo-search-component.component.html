@@ -1,0 +1,28 @@
+<form [formGroup]="searchForm">
+  <mat-form-field>
+    <mat-label>Breeds</mat-label>
+    <mat-select formControlName="breed">
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Quantity of results</mat-label>
+    <mat-select formControlName="limit">
+      <mat-option [value]="1">1</mat-option>
+      <mat-option [value]="5">5</mat-option>
+      <mat-option [value]="10">10</mat-option>
+      <mat-option [value]="25">25</mat-option>
+      <mat-option [value]="100">100</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+<div *ngIf="isLoading">Loading...</div>
+
+<div *ngIf="!isLoading">
+  <div *ngFor="let photo of photos" class="photo-container">
+    <img [src]="photo.url" [alt]="photo.breeds && photo.breeds.length > 0 ? photo.breeds[0].name : 'Cat'">
+  </div>
+</div>
