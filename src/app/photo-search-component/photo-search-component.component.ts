@@ -26,6 +26,10 @@ export class PhotoSearchComponentComponent implements OnInit {
       limit: [10]
     });
 
+    this.catService.getBreeds().subscribe(breeds => {
+      this.breeds = breeds;
+    });
+
     this.catService.getPhotos(10).subscribe(photos => {
       this.photos = photos;
       this.isLoading = false;
@@ -37,14 +41,6 @@ export class PhotoSearchComponentComponent implements OnInit {
         return this.catService.getPhotos(formValues.limit, formValues.breed);
       })
     ).subscribe(photos => {
-      this.photos = photos;
-      this.isLoading = false; 
-    });
-  }
-
-  private loadPhotos() {
-    this.isLoading = true; 
-    this.catService.getPhotos(10).subscribe(photos => {
       this.photos = photos;
       this.isLoading = false; 
     });
