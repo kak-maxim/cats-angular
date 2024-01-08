@@ -8,3 +8,15 @@ export interface CatPhoto {
   url: string;
   breeds: Breed[];
 }
+
+export interface CatState {
+  photos: CatPhoto[];
+  breeds: Breed[];
+  isLoading: boolean;
+}
+
+export const initialState: CatState = {
+  photos: [],
+  breeds: [],
+  isLoading: false
+};

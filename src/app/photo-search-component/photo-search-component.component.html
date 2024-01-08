@@ -2,8 +2,8 @@
   <mat-form-field>
     <mat-label>Breeds</mat-label>
     <mat-select formControlName="breed">
-      <mat-option value="">All Breeds</mat-option>
-      <mat-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</mat-option>
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let breed of (breeds$ | async)" [value]="breed.id">{{ breed.name }}</mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -19,10 +19,10 @@
   </mat-form-field>
 </form>
 
-<div *ngIf="isLoading">Loading...</div>
+<div *ngIf="(isLoading$ | async)">Loading...</div>
 
-<div *ngIf="!isLoading">
-  <div *ngFor="let photo of photos" class="photo-container">
+<div *ngIf="!(isLoading$ | async)">
+  <div *ngFor="let photo of (photos$ | async)" class="photo-container">
     <img [src]="photo.url" [alt]="photo.breeds && photo.breeds.length > 0 ? photo.breeds[0].name : 'Cat'">
   </div>
 </div>
