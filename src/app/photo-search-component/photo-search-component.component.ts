@@ -30,7 +30,7 @@ export class PhotoSearchComponentComponent implements OnInit {
     this.store.dispatch(CatActions.loadBreeds());
 
     this.searchForm = this.fb.group({
-      breed: [''],
+      breed: [[]],
       limit: [10]
     });
 

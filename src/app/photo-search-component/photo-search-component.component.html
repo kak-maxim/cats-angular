@@ -1,11 +1,10 @@
 <form [formGroup]="searchForm">
-  <mat-form-field>
-    <mat-label>Breeds</mat-label>
-    <mat-select formControlName="breed">
-      <mat-option value="">All</mat-option>
-      <mat-option *ngFor="let breed of (breeds$ | async)" [value]="breed.id">{{ breed.name }}</mat-option>
-    </mat-select>
-  </mat-form-field>
+<mat-form-field>
+  <mat-label>Breeds</mat-label>
+  <mat-select formControlName="breed" multiple>
+    <mat-option *ngFor="let breed of (breeds$ | async)" [value]="breed.id">{{ breed.name }}</mat-option>
+  </mat-select>
+</mat-form-field>
 
   <mat-form-field>
     <mat-label>Quantity of results</mat-label>
